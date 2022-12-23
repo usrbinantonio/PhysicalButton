@@ -9,17 +9,33 @@ if bg.debug:
 from gpiozero import Button, OutputDevice
 
 
+def setup_button_mode(button, mode_pressed):
+        if mode_pressed == "Normally Open (NO)":
+            button.when_pressed = react_to_input
+        if mode_pressed == "Normally Closed (NC)":
+            button.when_released = react_to_input
+
+def setup_button_pull(button, mode_pull):
+        if mode_pull == "Pull Up":
+            button.pull = react_to_input
+        if mode_pull == "Pull Down":
+            button.pull = react_to_input
+
+
+
 def setup_buttons():
     for button in bg.plugin._settings.get(["buttons"]):
         if button.get('gpio') == "none" or not button.get('enabled'):
             continue
         button_gpio = int(button.get('gpio'))
-        button_mode = button.get('buttonMode')
+        button_state = button.get('buttonState')
+        button_pull = button.get('buttonPull')
+
         new_button = Button(button_gpio, pull_up=True, bounce_time=None)
-        if button_mode == "Normally Open (NO)":
-            new_button.when_pressed = react_to_input
-        if button_mode == "Normally Closed (NC)":
-            new_button.when_released = react_to_input
+	
+	set_up_button_mode(new_button, button_mode)
+	set_up_button_pull(new_button, button_pull)
+
         bg.button_list.append(new_button)
         setup_output_pins(button)
     bg.plugin._logger.debug(f"Added Buttons: {bg.button_list}")

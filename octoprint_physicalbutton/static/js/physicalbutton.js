@@ -74,7 +74,11 @@ $(function() {
         ]);
 
         //button modes:
-        self.buttonModes = ko.observableArray(['Normally Open (NO)', 'Normally Closed (NC)']);
+        self.buttonStates = ko.observableArray(['Normally Open (NO)', 'Normally Closed (NC)']);
+
+	//pull modes
+	self.buttonPulls = ko.observableArray(['Pull Up', 'Pull Down']);
+
 
         //output options:
         self.outputOptions = ko.observableArray(['HIGH', 'LOW', 'Toggle']);
