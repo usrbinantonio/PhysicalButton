@@ -94,13 +94,17 @@
 			</select>
 		    </div>
 		    <div class="control-group choose-mode">
+			<label for="" title="Choose pin function">Function:</label>
+			<select data-bind="value: button.buttonFunction, options:$root.ButtonFuntions"></select>
+		    </div>
+		    <div class="control-group choose-mode">
 			<label for="" title="Choose a state for your button">State:</label>
-			<select data-bind="value: button.State, options:$root.ButtonStates"></select>
+			<select data-bind="value: button.buttonState, options:$root.ButtonStates"></select>
 		    </div>
 		    <div class="control-group choose-mode">
 			<label for="" title="Choose the pull mode for your button">Pull:</label>
-                                <select data-bind="value: button.Pull, options:$root.ButtonPulls"></select>
-                            </div>
+                        <select data-bind="value: button.buttonPull, options:$root.ButtonPulls"></select>
+                    </div>
                             <div class="control-group choose-time">
                                 <label for="" title="Choose how long the button has to be activated until an activity triggers">Hold Time (ms):</label>
                                 <input min="0" type="number" data-bind="value: button.buttonTime">

@@ -9,6 +9,13 @@ if bg.debug:
 from gpiozero import Button, OutputDevice
 
 
+def setup_funtion(button, mode_io):
+	if mode_io == "Input":
+		button.function = react_to_input
+	if mode_io == "Output":
+		button.function = react_to_input
+
+
 def setup_button_mode(button, mode_pressed):
         if mode_pressed == "Normally Open (NO)":
             button.when_pressed = react_to_input
@@ -28,6 +35,7 @@ def setup_buttons():
         if button.get('gpio') == "none" or not button.get('enabled'):
             continue
         button_gpio = int(button.get('gpio'))
+	button_function = button.get(buttonFunction")
         button_state = button.get('buttonState')
         button_pull = button.get('buttonPull')
 
